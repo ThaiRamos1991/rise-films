@@ -38,19 +38,23 @@ npx serve .
 python3 -m http.server 4321
 ```
 
-## Substituindo mídias (vídeos, fotos, logos)
+## Mídias — o que já é real e o que ainda é placeholder
 
-Todos os caminhos de mídia já estão referenciados no código (em `data-asset="..."` e nos elementos `<video>`), exatamente como pedido no briefing — nenhuma imagem genérica foi inventada. Assim que os arquivos oficiais estiverem disponíveis, basta colocá-los nesses caminhos dentro de `assets/`:
+**Já integrados (arquivos reais da Rise Films):**
+- `assets/logos/rise-logo.png` e `rise-logo-white.png` — logo oficial, recortado (fundo do PNG original veio com o xadrez de transparência "queimado" nos pixels; foi reprocessado para virar um PNG com alpha de verdade) e disponível em preto e branco (o header troca entre as duas versões via `filter: invert()` conforme o scroll).
+- `assets/team/vinicius-lima.webp` — foto real do Vinícius, recortada do fundo original (também veio sem transparência real) via segmentação (OpenCV GrabCut).
+- `assets/cases/hospital-sao-vicente.mp4`, `kaminski-law.mp4`, `atacado-connect.mp4` — os 3 vídeos de case reais, recomprimidos (H.264, 720px de largura) para caber no limite de 25MB do upload web do GitHub e carregar mais rápido. Cada um tem uma thumbnail `.jpg` extraída do próprio vídeo. Clicar no card abre um lightbox/modal (`js/lightbox.js`) com o vídeo vertical, controles e áudio — não é mais autoplay em loop mudo.
+- A seção Cases agora mostra só esses 3 (os 6 nomes fictícios do briefing original foram removidos a pedido da Thaís).
 
+**Ainda placeholder (pendente de arquivo real):**
 - `assets/videos/hero-01.mp4`, `hero-02.mp4`, `hero-03.mp4`
 - `assets/videos/service-*.mp4` (produção, motion, podcast, jingles)
 - `assets/videos/solution-*.mp4`
-- `assets/cases/*.mp4` e `assets/cases/*.jpg` (thumbnails)
-- `assets/team/thiago-berardi.webp`, `bruno-schultz.webp`, `vinicius-lima.webp`
-- `assets/logos/*.svg` (clientes)
+- `assets/team/thiago-berardi.webp`, `bruno-schultz.webp`
+- `assets/logos/*.svg` (clientes: OPAS, Rockefeller, SUS, Horsch, voarmais.com, Girassol Incorporadora, Premier Niveau, Gentell Brasil)
 - `assets/images/og-cover.jpg` (imagem de compartilhamento social, 1200x630)
 
-Até lá, cada área de mídia usa um fallback discreto (gradiente escuro) em vez de mostrar um ícone de imagem quebrada.
+Essas áreas continuam com fallback discreto (gradiente escuro / iniciais) até que os arquivos reais sejam enviados.
 
 ## Formulário de contato
 

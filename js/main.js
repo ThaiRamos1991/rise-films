@@ -10,6 +10,7 @@ import { initSolutions } from './solutions.js';
 import { initProcess } from './process.js';
 import { initFooter } from './footer.js';
 import { initContactForm } from './contact.js';
+import { initCaseLightbox } from './lightbox.js';
 import { initMotion } from './motion.js';
 
 document.documentElement.classList.remove('no-js');
@@ -23,6 +24,7 @@ async function boot() {
   initProcess();
   initFooter();
   initContactForm();
+  initCaseLightbox();
   initMotion();
 
   await initPreloader();

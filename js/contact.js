@@ -1,8 +1,7 @@
 // ============================================================
 // RISE FILMS — Formulário de contato
-// NOTE: não há backend configurado ainda. O submit é interceptado e
-// mostra feedback visual; plugue aqui uma Vercel Function, Formspree,
-// HubSpot ou outro endpoint quando estiver disponível.
+// Envia os dados para /api/contact (função serverless da Vercel),
+// que despacha o e-mail via Resend. Ver api/contact.js.
 // ============================================================
 import { qs, qsa } from './utils.js';
 
@@ -32,14 +31,26 @@ export function initContactForm() {
     submitBtn?.setAttribute('disabled', 'true');
     if (status) status.textContent = 'Enviando...';
 
+    const payload = Object.fromEntries(new FormData(form).entries());
+
     try {
-      // Placeholder: substitua por uma chamada real (ex.: fetch('/api/contact', {...})).
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Falha ao enviar.');
+      }
+
       if (status) status.textContent = 'Recebemos sua mensagem. Em breve entraremos em contato.';
       form.reset();
       qsa('.field', form).forEach((f) => f.classList.remove('has-value'));
     } catch (err) {
-      if (status) status.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+      if (status) status.textContent = err.message || 'Não foi possível enviar agora. Tente novamente em instantes.';
     } finally {
       submitBtn?.removeAttribute('disabled');
     }

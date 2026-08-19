@@ -62,7 +62,9 @@
 
 <header class="site-header" data-header>
   <div class="container site-header__inner">
-    <a href="#home" class="logo">Rise Films</a>
+    <a href="#home" class="logo" data-cursor-target="view">
+      <img src="/assets/logos/rise-logo-white.png" alt="Rise Films" class="logo__mark" width="146" height="78">
+    </a>
     <nav class="primary-nav" aria-label="Navegação principal">
       <ul>
         <li><a class="link-underline" href="#home">Home</a></li>
@@ -275,31 +277,28 @@ despertamos emoções.</p>
         <p class="cases__lead" id="cases-title" data-reveal>+ de <span class="accent">20 anos</span> contando histórias excepcionais.</p>
         <p>Produções que superam as expectativas dos nossos clientes e se transformam em cases de sucesso.</p>
       </div>
-      <div class="cases__grid">
-        <a class="case-card" href="#contato" data-case data-cursor-target="play" data-reveal>
-          <span class="case-card__media-fallback media-fallback" data-asset="/assets/cases/hospital-sao-vicente.mp4"></span>
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">01</span><span class="case-card__name">Hospital São Vicente</span></span></span>
-        </a>
-        <a class="case-card" href="#contato" data-case data-cursor-target="play" data-reveal>
-          <span class="case-card__media-fallback media-fallback" data-asset="/assets/cases/rockefeller.mp4"></span>
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">02</span><span class="case-card__name">Rockefeller</span></span></span>
-        </a>
-        <a class="case-card" href="#contato" data-case data-cursor-target="play" data-reveal>
-          <span class="case-card__media-fallback media-fallback" data-asset="/assets/cases/royal-face.mp4"></span>
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">03</span><span class="case-card__name">Royal Face</span></span></span>
-        </a>
-        <a class="case-card" href="#contato" data-case data-cursor-target="play" data-reveal>
-          <span class="case-card__media-fallback media-fallback" data-asset="/assets/cases/everest-unlimited.mp4"></span>
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">04</span><span class="case-card__name">Everest Unlimited</span></span></span>
-        </a>
-        <a class="case-card" href="#contato" data-case data-cursor-target="play" data-reveal>
-          <span class="case-card__media-fallback media-fallback" data-asset="/assets/cases/premier-niveau.mp4"></span>
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">05</span><span class="case-card__name">Premier Niveau</span></span></span>
-        </a>
-        <a class="case-card" href="#contato" data-case data-cursor-target="play" data-reveal>
-          <span class="case-card__media-fallback media-fallback" data-asset="/assets/cases/windy-city.mp4"></span>
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">06</span><span class="case-card__name">Windy City</span></span></span>
-        </a>
+      <div class="cases__grid cases__grid--three">
+        <button type="button" class="case-card" data-case data-cursor-target="play" data-reveal
+          data-case-video="/assets/cases/hospital-sao-vicente.mp4"
+          data-case-title="Hospital São Vicente"
+          aria-haspopup="dialog">
+          <img class="case-card__poster" src="/assets/cases/hospital-sao-vicente.jpg" alt="" loading="lazy">
+          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">01</span><span class="case-card__name">Hospital São Vicente</span></span><span class="case-card__play" aria-hidden="true"></span></span>
+        </button>
+        <button type="button" class="case-card" data-case data-cursor-target="play" data-reveal
+          data-case-video="/assets/cases/kaminski-law.mp4"
+          data-case-title="Kaminski Law"
+          aria-haspopup="dialog">
+          <img class="case-card__poster" src="/assets/cases/kaminski-law.jpg" alt="" loading="lazy">
+          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">02</span><span class="case-card__name">Kaminski Law</span></span><span class="case-card__play" aria-hidden="true"></span></span>
+        </button>
+        <button type="button" class="case-card" data-case data-cursor-target="play" data-reveal
+          data-case-video="/assets/cases/atacado-connect.mp4"
+          data-case-title="Atacado Connect"
+          aria-haspopup="dialog">
+          <img class="case-card__poster" src="/assets/cases/atacado-connect.jpg" alt="" loading="lazy">
+          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">03</span><span class="case-card__name">Atacado Connect</span></span><span class="case-card__play" aria-hidden="true"></span></span>
+        </button>
       </div>
     </div>
   </section>
@@ -344,7 +343,7 @@ despertamos emoções.</p>
 
       <article class="team-member" data-reveal>
         <div class="team-member__photo">
-          <span class="team-member__photo-fallback media-fallback" data-asset="/assets/team/vinicius-lima.webp"><span class="team-member__initials">VL</span></span>
+          <img src="/assets/team/vinicius-lima.webp" alt="Vinicius Lima, CCO da Rise Films" class="team-member__img" loading="lazy">
         </div>
         <div class="team-member__body">
           <span class="team-member__role">CCO — Chief Creative Officer</span>
@@ -410,12 +409,25 @@ despertamos emoções.</p>
 
 </main>
 
+<div class="case-lightbox" data-case-lightbox hidden>
+  <div class="case-lightbox__backdrop" data-case-lightbox-close></div>
+  <div class="case-lightbox__panel" role="dialog" aria-modal="true" aria-label="Vídeo do case">
+    <button type="button" class="case-lightbox__close" data-case-lightbox-close aria-label="Fechar vídeo">
+      <span></span><span></span>
+    </button>
+    <div class="case-lightbox__video-wrap">
+      <video class="case-lightbox__video" data-case-lightbox-video controls playsinline></video>
+    </div>
+    <p class="case-lightbox__title" data-case-lightbox-title></p>
+  </div>
+</div>
+
 <div class="site-footer-wrap" data-footer-wrap>
   <footer class="site-footer" id="footer" data-reveal>
     <div class="container">
       <div class="footer__top">
         <div>
-          <p class="footer__brand">Rise Films</p>
+          <img src="/assets/logos/rise-logo-white.png" alt="Rise Films" class="footer__brand-logo" width="146" height="78">
         </div>
         <div class="footer__col">
           <h3>Contato</h3>
