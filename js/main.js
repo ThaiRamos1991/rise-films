@@ -7,6 +7,7 @@ import { initNav } from './nav.js';
 import { initHero } from './hero.js';
 import { initMarquee } from './marquee.js';
 import { initSolutions } from './solutions.js';
+import { initSpotlightCards } from './spotlight-card.js';
 import { initProcess } from './process.js';
 import { initFooter } from './footer.js';
 import { initContactForm } from './contact.js';
@@ -21,6 +22,7 @@ async function boot() {
   initHero();
   initMarquee();
   initSolutions();
+  initSpotlightCards('.solution-panel');
   initProcess();
   initFooter();
   initContactForm();
