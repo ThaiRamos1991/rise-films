@@ -592,11 +592,11 @@ input, textarea { font-family: inherit; }
 
 /* ---------- Contato ---------- */
 .contact { background: var(--color-black); color: var(--color-white); }
-.contact__grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
-@media (min-width: 900px) { .contact__grid { grid-template-columns: 5fr 7fr; } }
+.contact__grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); grid-template-columns: 1fr; max-width: 640px; margin-inline: auto; }
+.contact__grid > div:first-child { text-align: center; }
 .contact__headline { font-size: var(--fs-h1); font-weight: 600; line-height: 1.02; }
 .contact__headline .accent { color: var(--color-rise); }
-.contact__lead { color: var(--color-white-70); margin-top: 1.25rem; max-width: 42ch; }
+.contact__lead { color: var(--color-white-70); margin-top: 1.25rem; max-width: 42ch; margin-inline: auto; }
 
 .field { position: relative; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
 .field input, .field textarea, .field select {
