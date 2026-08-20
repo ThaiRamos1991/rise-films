@@ -1,8 +1,7 @@
 // ============================================================
-// RISE FILMS — Hero cinematográfico (3 mensagens, transição automática)
+// RISE FILMS — Hero cinematográfico (fundo fixo em vídeo, só o texto muda)
 // ============================================================
 import { qs, qsa, prefersReducedMotion } from './utils.js';
-import { initMagicRings } from './magic-rings.js';
 
 const slidesContent = [
   {
@@ -26,7 +25,6 @@ export function initHero() {
   const hero = qs('[data-hero]');
   if (!hero) return;
 
-  const slides = qsa('[data-hero-slide]', hero);
   const headlineEl = qs('[data-hero-headline]', hero);
   const supportingEl = qs('[data-hero-supporting]', hero);
   const ctaEl = qs('[data-hero-cta]', hero);
@@ -56,7 +54,8 @@ export function initHero() {
   }
 
   // Troca sutil de texto: um breve fade + deslocamento vertical na saída da
-  // frase anterior, seguido do fade de entrada da nova frase.
+  // frase anterior, seguido do fade de entrada da nova frase. O fundo em
+  // vídeo permanece o mesmo o tempo todo — só o texto por cima muda.
   function renderText(i, animate) {
     if (!animate || prefersReducedMotion()) {
       applyText(i);
@@ -75,17 +74,6 @@ export function initHero() {
   }
 
   function goTo(i, animate = true) {
-    slides.forEach((s, idx) => {
-      s.classList.toggle('is-active', idx === i);
-      const video = s.querySelector('video');
-      if (video) {
-        if (idx === i) {
-          video.play?.().catch(() => {});
-        } else {
-          video.pause?.();
-        }
-      }
-    });
     renderText(i, animate);
     index = i;
   }
@@ -112,7 +100,8 @@ export function initHero() {
   goTo(0, false);
   startAutoplay();
 
-  // Setas de navegação manual entre os banners.
+  // Setas de navegação manual — trocam apenas o texto, o vídeo de fundo
+  // continua tocando sem interrupção.
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
       prev();
@@ -123,18 +112,6 @@ export function initHero() {
     nextBtn.addEventListener('click', () => {
       next();
       resetAutoplayAfterManualNav();
-    });
-  }
-
-  // Fundo animado (anéis de luz) — decorativo, some sozinho se o WebGL falhar.
-  const ringsMount = qs('[data-hero-rings]', hero);
-  if (ringsMount) {
-    initMagicRings(ringsMount, {
-      color: '#65F461',
-      colorTwo: '#ffffff',
-      speed: 0.8,
-      ringCount: 5,
-      opacity: 0.85,
     });
   }
 
