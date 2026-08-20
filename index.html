@@ -8,7 +8,10 @@
 <link rel="canonical" href="https://risefilms.com.br/" />
 
 <!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon/favicon-48.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -278,41 +281,76 @@ despertamos emoções.</p>
         <p class="cases__lead" id="cases-title" data-reveal>+ de <span class="accent">20 anos</span> contando histórias excepcionais.</p>
         <p>Produções que superam as expectativas dos nossos clientes e se transformam em cases de sucesso.</p>
       </div>
-      <div class="cases__grid">
-        <button type="button" class="case-card" data-case data-cursor-target="play" data-reveal
+      <div class="cases__accordion" data-accordion-gallery role="list" aria-label="Cases em destaque">
+        <button type="button" class="ag-panel" data-case data-ag-panel="0" data-cursor-target="play" data-reveal
           data-case-video="/assets/cases/hospital-sao-vicente.mp4"
           data-case-title="Hospital São Vicente"
-          aria-haspopup="dialog">
-          <img class="case-card__poster" src="/assets/cases/hospital-sao-vicente.jpg" alt="" loading="lazy">
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">01</span><span class="case-card__name">Hospital São Vicente</span></span><span class="case-card__play" aria-hidden="true"></span></span>
+          aria-haspopup="dialog" aria-label="Hospital São Vicente — assistir vídeo" role="listitem">
+          <span class="ag-panel__frame">
+            <span class="ag-panel__media"><img src="/assets/cases/hospital-sao-vicente.jpg" alt="" loading="lazy" draggable="false"></span>
+            <span class="ag-panel__overlay" aria-hidden="true"></span>
+          </span>
+          <span class="ag-panel__play" aria-hidden="true"></span>
+          <span class="ag-panel__label" aria-hidden="true">
+            <span class="ag-panel__bar"></span>
+            <span class="ag-panel__text">01 — Hospital São Vicente</span>
+          </span>
         </button>
-        <button type="button" class="case-card" data-case data-cursor-target="play" data-reveal
+        <button type="button" class="ag-panel" data-case data-ag-panel="1" data-cursor-target="play" data-reveal
           data-case-video="/assets/cases/rockfeller.mp4"
           data-case-title="Rockefeller"
-          aria-haspopup="dialog">
-          <img class="case-card__poster" src="/assets/cases/rockfeller.jpg" alt="" loading="lazy">
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">02</span><span class="case-card__name">Rockefeller</span></span><span class="case-card__play" aria-hidden="true"></span></span>
+          aria-haspopup="dialog" aria-label="Rockefeller — assistir vídeo" role="listitem">
+          <span class="ag-panel__frame">
+            <span class="ag-panel__media"><img src="/assets/cases/rockfeller.jpg" alt="" loading="lazy" draggable="false"></span>
+            <span class="ag-panel__overlay" aria-hidden="true"></span>
+          </span>
+          <span class="ag-panel__play" aria-hidden="true"></span>
+          <span class="ag-panel__label" aria-hidden="true">
+            <span class="ag-panel__bar"></span>
+            <span class="ag-panel__text">02 — Rockefeller</span>
+          </span>
         </button>
-        <button type="button" class="case-card" data-case data-cursor-target="play" data-reveal
+        <button type="button" class="ag-panel" data-case data-ag-panel="2" data-cursor-target="play" data-reveal
           data-case-video="/assets/cases/royal-face.mp4"
           data-case-title="Royal Face"
-          aria-haspopup="dialog">
-          <img class="case-card__poster" src="/assets/cases/royal-face.jpg" alt="" loading="lazy">
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">03</span><span class="case-card__name">Royal Face</span></span><span class="case-card__play" aria-hidden="true"></span></span>
+          aria-haspopup="dialog" aria-label="Royal Face — assistir vídeo" role="listitem">
+          <span class="ag-panel__frame">
+            <span class="ag-panel__media"><img src="/assets/cases/royal-face.jpg" alt="" loading="lazy" draggable="false"></span>
+            <span class="ag-panel__overlay" aria-hidden="true"></span>
+          </span>
+          <span class="ag-panel__play" aria-hidden="true"></span>
+          <span class="ag-panel__label" aria-hidden="true">
+            <span class="ag-panel__bar"></span>
+            <span class="ag-panel__text">03 — Royal Face</span>
+          </span>
         </button>
-        <button type="button" class="case-card" data-case data-cursor-target="play" data-reveal
+        <button type="button" class="ag-panel" data-case data-ag-panel="3" data-cursor-target="play" data-reveal
           data-case-video="/assets/cases/premier-niveau.mp4"
           data-case-title="Premier Niveau"
-          aria-haspopup="dialog">
-          <img class="case-card__poster" src="/assets/cases/premier-niveau.jpg" alt="" loading="lazy">
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">04</span><span class="case-card__name">Premier Niveau</span></span><span class="case-card__play" aria-hidden="true"></span></span>
+          aria-haspopup="dialog" aria-label="Premier Niveau — assistir vídeo" role="listitem">
+          <span class="ag-panel__frame">
+            <span class="ag-panel__media"><img src="/assets/cases/premier-niveau.jpg" alt="" loading="lazy" draggable="false"></span>
+            <span class="ag-panel__overlay" aria-hidden="true"></span>
+          </span>
+          <span class="ag-panel__play" aria-hidden="true"></span>
+          <span class="ag-panel__label" aria-hidden="true">
+            <span class="ag-panel__bar"></span>
+            <span class="ag-panel__text">04 — Premier Niveau</span>
+          </span>
         </button>
-        <button type="button" class="case-card" data-case data-cursor-target="play" data-reveal
+        <button type="button" class="ag-panel" data-case data-ag-panel="4" data-cursor-target="play" data-reveal
           data-case-video="/assets/cases/windy-city.mp4"
           data-case-title="Windy City"
-          aria-haspopup="dialog">
-          <img class="case-card__poster" src="/assets/cases/windy-city.jpg" alt="" loading="lazy">
-          <span class="case-card__overlay"><span class="case-card__meta"><span class="case-card__num">05</span><span class="case-card__name">Windy City</span></span><span class="case-card__play" aria-hidden="true"></span></span>
+          aria-haspopup="dialog" aria-label="Windy City — assistir vídeo" role="listitem">
+          <span class="ag-panel__frame">
+            <span class="ag-panel__media"><img src="/assets/cases/windy-city.jpg" alt="" loading="lazy" draggable="false"></span>
+            <span class="ag-panel__overlay" aria-hidden="true"></span>
+          </span>
+          <span class="ag-panel__play" aria-hidden="true"></span>
+          <span class="ag-panel__label" aria-hidden="true">
+            <span class="ag-panel__bar"></span>
+            <span class="ag-panel__text">05 — Windy City</span>
+          </span>
         </button>
       </div>
     </div>

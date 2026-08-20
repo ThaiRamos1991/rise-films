@@ -466,45 +466,76 @@ input, textarea { font-family: inherit; }
 .cases__intro { display: grid; gap: 1.5rem; margin-bottom: clamp(2.5rem, 6vw, 5rem); max-width: 70ch; }
 .cases__lead { font-size: var(--fs-h2); font-weight: 600; line-height: 1.05; }
 .cases__lead .accent { color: var(--color-rise); }
-.cases__grid { display: grid; grid-template-columns: 1fr; gap: clamp(1.25rem, 3vw, 2rem); }
-@media (min-width: 700px) { .cases__grid { grid-template-columns: repeat(2, 1fr); } }
-.case-card {
-  position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--color-black);
-  display: block; width: 100%; border: 0; padding: 0; margin: 0; cursor: pointer; font: inherit; text-align: left;
+
+/* Accordion Gallery (port do componente React Bits, sem GSAP — puro CSS) */
+.cases__accordion {
+  display: flex;
+  gap: clamp(0.5rem, 1.2vw, 0.75rem);
+  width: 100%;
+  height: clamp(320px, 42vw, 520px);
 }
-.case-card:nth-child(3n+1) { aspect-ratio: 16/10; }
-@media (min-width: 700px) { .case-card:nth-child(3n+1) { grid-column: span 2; } }
-.case-card__poster {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform 900ms var(--ease); display: block;
+.ag-panel {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  cursor: pointer;
+  display: block;
+  border: 0; padding: 0; margin: 0; font: inherit; text-align: left;
+  background: var(--color-black);
+  box-shadow: 0 10px 30px -18px rgba(0,0,0,0.5);
+  transition: flex-grow 600ms var(--ease);
 }
-.case-card__play {
-  position: absolute; top: clamp(1rem, 2.5vw, 1.75rem); right: clamp(1rem, 2.5vw, 1.75rem);
+.ag-panel--active { flex-grow: 4.3; }
+.ag-panel:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--color-rise), 0 10px 30px -18px rgba(0,0,0,0.5); }
+.ag-panel__frame { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; }
+.ag-panel__media {
+  position: absolute; inset: 0;
+  filter: grayscale(1);
+  transition: filter 600ms var(--ease);
+}
+.ag-panel--active .ag-panel__media { filter: grayscale(0); }
+.ag-panel__media img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
+.ag-panel__overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 45%, rgba(24,24,24,0.85) 100%), rgba(24,24,24,0.35);
+  transition: background 600ms var(--ease);
+}
+.ag-panel--active .ag-panel__overlay { background: linear-gradient(180deg, transparent 45%, rgba(24,24,24,0.75) 100%), rgba(24,24,24,0); }
+.ag-panel__play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.6);
   width: clamp(2.5rem, 4vw, 3.25rem); height: clamp(2.5rem, 4vw, 3.25rem);
   border-radius: 50%; border: 1px solid rgba(255,255,255,0.55);
   display: flex; align-items: center; justify-content: center;
-  transition: background var(--dur-m) var(--ease), border-color var(--dur-m) var(--ease);
+  opacity: 0; pointer-events: none; z-index: 2;
+  transition: opacity 400ms var(--ease), transform 400ms var(--ease), background var(--dur-m) var(--ease), border-color var(--dur-m) var(--ease);
 }
-.case-card__play::before {
+.ag-panel__play::before {
   content: ''; width: 0; height: 0;
   border-top: 0.4em solid transparent; border-bottom: 0.4em solid transparent;
   border-left: 0.6em solid var(--color-white); margin-left: 0.15em;
   transition: border-color var(--dur-m) var(--ease);
 }
+.ag-panel--active .ag-panel__play { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 @media (hover: hover) {
-  .case-card:hover .case-card__play { background: var(--color-rise); border-color: var(--color-rise); }
-  .case-card:hover .case-card__play::before { border-left-color: var(--color-black); }
+  .ag-panel:hover .ag-panel__play { background: var(--color-rise); border-color: var(--color-rise); }
+  .ag-panel:hover .ag-panel__play::before { border-left-color: var(--color-black); }
 }
-.case-card__media-fallback {
-  position: absolute; inset: 0;
-  background: linear-gradient(150deg, #1f1f1f, #101010);
+.ag-panel__label {
+  position: absolute; left: clamp(1rem, 2vw, 1.5rem); bottom: clamp(1rem, 2vw, 1.5rem); right: clamp(1rem, 2vw, 1.5rem);
+  display: flex; align-items: center; gap: 0.75rem;
+  opacity: 0; transform: translateX(-14px);
+  transition: opacity 400ms var(--ease), transform 400ms var(--ease);
+  pointer-events: none; z-index: 2;
 }
-.case-card__overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(24,24,24,0.75) 0%, rgba(24,24,24,0.05) 45%); display: flex; align-items: flex-end; padding: clamp(1.25rem, 2.5vw, 2rem); }
-.case-card__meta { color: var(--color-white); display: flex; flex-direction: column; gap: 0.35rem; }
-.case-card__num { font-size: var(--fs-small); color: var(--color-rise); letter-spacing: 0.1em; }
-.case-card__name { font-size: clamp(1.15rem, 2vw, 1.75rem); font-weight: 500; }
-@media (hover: hover) {
-  .case-card:hover .case-card__poster { transform: scale(1.045); }
+.ag-panel--active .ag-panel__label { opacity: 1; transform: translateX(0); }
+.ag-panel__bar { flex: 0 0 auto; width: 3px; height: 1.6rem; border-radius: 3px; background: var(--color-rise); box-shadow: 0 0 12px rgba(101,244,97,0.5); }
+.ag-panel__text { color: var(--color-white); font-weight: 500; font-size: clamp(0.95rem, 1.6vw, 1.3rem); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 2px 14px rgba(0,0,0,0.55); }
+@media (max-width: 700px) {
+  .cases__accordion { flex-direction: column; height: auto; }
+  .ag-panel { flex: 0 0 auto; height: 84px; transition: height 500ms var(--ease); }
+  .ag-panel--active { height: 320px; flex-grow: 0; }
 }
 
 /* ---------- Case lightbox ---------- */

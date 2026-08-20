@@ -8,6 +8,7 @@ import { initHero } from './hero.js';
 import { initMarquee } from './marquee.js';
 import { initSolutions } from './solutions.js';
 import { initSpotlightCards } from './spotlight-card.js';
+import { initAccordionGallery } from './accordion-gallery.js';
 import { initProcess } from './process.js';
 import { initFooter } from './footer.js';
 import { initContactForm } from './contact.js';
@@ -23,6 +24,7 @@ async function boot() {
   initMarquee();
   initSolutions();
   initSpotlightCards('.solution-panel');
+  initAccordionGallery('[data-accordion-gallery]', { defaultIndex: 2 });
   initProcess();
   initFooter();
   initContactForm();
