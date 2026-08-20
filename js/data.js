@@ -86,8 +86,11 @@ export const processSteps = [
 
 export const cases = [
   { number: "01", name: "Hospital São Vicente", thumb: "/assets/cases/hospital-sao-vicente.jpg", video: "/assets/cases/hospital-sao-vicente.mp4" },
-  { number: "02", name: "Kaminski Law", thumb: "/assets/cases/kaminski-law.jpg", video: "/assets/cases/kaminski-law.mp4" },
-  { number: "03", name: "Atacado Connect", thumb: "/assets/cases/atacado-connect.jpg", video: "/assets/cases/atacado-connect.mp4" },
+  { number: "02", name: "Rockefeller", thumb: "/assets/cases/rockfeller.jpg", video: "/assets/cases/rockfeller.mp4" },
+  { number: "03", name: "Royal Face", thumb: "/assets/cases/royal-face.jpg", video: "/assets/cases/royal-face.mp4" },
+  { number: "04", name: "Premier Niveau", thumb: "/assets/cases/premier-niveau.jpg", video: "/assets/cases/premier-niveau.mp4" },
+  { number: "05", name: "Windy City", thumb: "/assets/cases/windy-city.jpg", video: "/assets/cases/windy-city.mp4" },
+  // Everest Unlimited: aguardando envio do vídeo (arquivo original de 93MB não foi transferido ainda).
 ];
 
 export const team = [

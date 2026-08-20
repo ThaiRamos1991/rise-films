@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://risefilms.com.br/sitemap.xml
