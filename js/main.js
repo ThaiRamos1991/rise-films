@@ -14,6 +14,7 @@ import { initFooter } from './footer.js';
 import { initContactForm } from './contact.js';
 import { initCaseLightbox } from './lightbox.js';
 import { initMotion } from './motion.js';
+import { initTextLoop } from './text-loop.js';
 
 document.documentElement.classList.remove('no-js');
 
@@ -26,6 +27,10 @@ async function boot() {
   initSpotlightCards('.solution-panel');
   initAccordionGallery('[data-accordion-gallery]', { defaultIndex: 2 });
   initProcess();
+  initTextLoop(document.querySelector('[data-text-loop]'), {
+    text: 'Rise Films',
+    separator: '✦',
+  });
   initFooter();
   initContactForm();
   initCaseLightbox();

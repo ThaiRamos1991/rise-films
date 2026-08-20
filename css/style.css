@@ -580,6 +580,13 @@ input, textarea { font-family: inherit; }
 .team-member__name { font-size: var(--fs-h2); font-weight: 600; }
 .team-member__bio p { color: rgba(24,24,24,0.72); max-width: 62ch; margin-bottom: 0.85em; }
 
+/* ---------- Faixa de texto (TextLoop) ---------- */
+.text-loop-section { background: var(--color-white); padding-block: clamp(0.5rem, 2vw, 1.5rem); overflow: hidden; }
+.text-loop { position: relative; width: 100%; overflow: hidden; }
+.text-loop-svg { display: block; width: 100%; height: clamp(64px, 8vw, 110px); }
+.text-loop-text { user-select: none; }
+.text-loop-measure { visibility: hidden; pointer-events: none; }
+
 /* ---------- Contato ---------- */
 .contact { background: var(--color-black); color: var(--color-white); }
 .contact__grid { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
