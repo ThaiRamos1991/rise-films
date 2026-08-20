@@ -3,6 +3,7 @@
 // ============================================================
 import { qs, qsa, prefersReducedMotion } from './utils.js';
 import { initMagicRings } from './magic-rings.js';
+import { initWarpText } from './warp-text.js';
 
 const slidesContent = [
   {
@@ -32,6 +33,12 @@ export function initHero() {
   const ctaEl = qs('[data-hero-cta]', hero);
   const currentEl = qs('[data-hero-current]', hero);
   const progressEl = qs('[data-hero-progress]', hero);
+  const prevBtn = qs('[data-hero-prev]', hero);
+  const nextBtn = qs('[data-hero-next]', hero);
+
+  // Duas linhas do título — cada uma com seu próprio mount para o efeito de vidro (warp text).
+  const lineEls = qsa('[data-hero-line]', headlineEl || hero);
+  const warpInstances = [null, null];
 
   let index = 0;
   const total = slidesContent.length;
@@ -40,9 +47,13 @@ export function initHero() {
 
   function renderText(i) {
     const data = slidesContent[i];
-    if (headlineEl) {
-      headlineEl.innerHTML = `<span>${data.headline[0]}</span><span><em>${data.headline[1]}</em></span>`;
-    }
+    lineEls.forEach((lineEl, li) => {
+      const textEl = qs('[data-hero-line-text]', lineEl);
+      const text = data.headline[li] || '';
+      if (textEl) textEl.textContent = text;
+      const warp = warpInstances[li];
+      if (warp) warp.update({ text });
+    });
     if (supportingEl) supportingEl.textContent = data.supporting;
     if (ctaEl) ctaEl.setAttribute('href', data.href);
     if (currentEl) currentEl.textContent = String(i + 1).padStart(2, '0');
@@ -68,14 +79,37 @@ export function initHero() {
     goTo((index + 1) % total);
   }
 
+  function prev() {
+    goTo((index - 1 + total) % total);
+  }
+
   function startAutoplay() {
     if (prefersReducedMotion()) return;
     clearInterval(timer);
     timer = window.setInterval(next, interval);
   }
 
+  function resetAutoplayAfterManualNav() {
+    startAutoplay();
+    hero.dispatchEvent(new CustomEvent('rise:hero-reset'));
+  }
+
   goTo(0);
   startAutoplay();
+
+  // Setas de navegação manual entre os banners.
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      prev();
+      resetAutoplayAfterManualNav();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      next();
+      resetAutoplayAfterManualNav();
+    });
+  }
 
   // Fundo animado (anéis de luz) — decorativo, some sozinho se o WebGL falhar.
   const ringsMount = qs('[data-hero-rings]', hero);
@@ -86,6 +120,36 @@ export function initHero() {
       speed: 0.8,
       ringCount: 5,
       opacity: 0.85,
+    });
+  }
+
+  // Efeito de vidro/distorção no título — progressive enhancement:
+  // se o WebGL2/OGL falhar, o texto normal (já visível) continua exatamente como estava.
+  if (!prefersReducedMotion()) {
+    lineEls.forEach((lineEl, li) => {
+      const warpMount = qs('[data-hero-headline-warp]', lineEl);
+      if (!warpMount) return;
+      const isAccent = li === 1;
+      initWarpText(warpMount, {
+        text: slidesContent[index].headline[li] || '',
+        color: isAccent ? '#65F461' : '#ffffff',
+        fontSize: 'inherit',
+        fontWeight: 600,
+        fontFamily: 'inherit',
+        letterSpacing: '-0.01em',
+        lineHeight: 0.98,
+        warpStrength: 0.06,
+        warpScale: 1.6,
+        speed: 0.5,
+        pointerInfluence: 0.4,
+        pointerStrength: 0.3,
+        refraction: 0.015,
+        ripple: true,
+      }).then((instance) => {
+        if (!instance) return; // WebGL2/OGL indisponível — mantém o texto normal.
+        warpInstances[li] = instance;
+        lineEl.classList.add('is-warped');
+      });
     });
   }
 

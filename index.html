@@ -115,9 +115,23 @@
 
     <div class="hero__rings" data-hero-rings aria-hidden="true"></div>
 
+    <button type="button" class="hero__nav hero__nav--prev" data-hero-prev aria-label="Banner anterior" data-cursor-target="view">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button type="button" class="hero__nav hero__nav--next" data-hero-next aria-label="Próximo banner" data-cursor-target="view">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
     <div class="hero__content container">
       <h1 class="hero__headline" data-hero-headline>
-        <span>Luz,</span><span><em>câmera e emoção.</em></span>
+        <span class="hero__headline-line" data-hero-line="0">
+          <span class="hero__headline-text" data-hero-line-text>Luz,</span>
+          <span class="hero__headline-warp" data-hero-headline-warp="0" aria-hidden="true"></span>
+        </span>
+        <span class="hero__headline-line" data-hero-line="1">
+          <em class="hero__headline-text" data-hero-line-text>câmera e emoção.</em>
+          <span class="hero__headline-warp" data-hero-headline-warp="1" aria-hidden="true"></span>
+        </span>
       </h1>
       <p class="hero__supporting" data-hero-supporting>Rompemos limites,
 despertamos emoções.</p>
