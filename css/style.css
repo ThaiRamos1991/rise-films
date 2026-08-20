@@ -381,11 +381,13 @@ input, textarea { font-family: inherit; }
 .marquee__track { display: flex; width: max-content; gap: clamp(3rem, 6vw, 6rem); animation: marquee 32s linear infinite; }
 .marquee:hover .marquee__track { animation-play-state: paused; }
 .marquee__item {
-  font-size: clamp(1rem, 1.4vw, 1.35rem); font-weight: 500; color: rgba(24,24,24,0.35);
-  white-space: nowrap; transition: color var(--dur-s) var(--ease);
+  display: flex; align-items: center; height: clamp(2.5rem, 5vw, 3.5rem);
 }
-.marquee__item:hover { color: var(--color-black); }
-.marquee__item:hover .marquee__item-accent { color: var(--color-rise); }
+.marquee__item img {
+  height: 100%; width: auto; max-width: none; display: block;
+  opacity: 0.6; filter: grayscale(1); transition: opacity var(--dur-s) var(--ease), filter var(--dur-s) var(--ease);
+}
+.marquee__item:hover img { opacity: 1; filter: grayscale(0); }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ---------- Soluções ---------- */
