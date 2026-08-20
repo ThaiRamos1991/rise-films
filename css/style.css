@@ -283,6 +283,12 @@ input, textarea { font-family: inherit; }
     linear-gradient(160deg, #181818 0%, #0f0f0f 60%, #181818 100%);
 }
 .hero__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(24,24,24,0.25) 0%, rgba(24,24,24,0.65) 100%); }
+.hero__rings {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
 .hero__content {
   position: relative; z-index: 2;
   width: 100%;

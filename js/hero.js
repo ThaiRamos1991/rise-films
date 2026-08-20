@@ -2,6 +2,7 @@
 // RISE FILMS — Hero cinematográfico (3 mensagens, transição automática)
 // ============================================================
 import { qs, qsa, prefersReducedMotion } from './utils.js';
+import { initMagicRings } from './magic-rings.js';
 
 const slidesContent = [
   {
@@ -75,6 +76,18 @@ export function initHero() {
 
   goTo(0);
   startAutoplay();
+
+  // Fundo animado (anéis de luz) — decorativo, some sozinho se o WebGL falhar.
+  const ringsMount = qs('[data-hero-rings]', hero);
+  if (ringsMount) {
+    initMagicRings(ringsMount, {
+      color: '#65F461',
+      colorTwo: '#ffffff',
+      speed: 0.8,
+      ringCount: 5,
+      opacity: 0.85,
+    });
+  }
 
   // Pause autoplay while tab hidden, resume on visibility.
   document.addEventListener('visibilitychange', () => {
