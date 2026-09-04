@@ -666,11 +666,11 @@ input, textarea { font-family: inherit; }
 .footer__brand-tbs:hover, .footer__brand-tbs:focus-visible { color: var(--color-rise); }
 .footer__col h3 { font-size: var(--fs-small); letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-rise); margin-bottom: 1rem; }
 .footer__col p, .footer__col a { display: block; color: var(--color-white-70); margin-bottom: 0.5rem; font-size: var(--fs-body); }
-.footer__nav { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; border-top: var(--line-light); padding-top: 1.5rem; }
+.footer__nav { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; padding-top: 1.5rem; }
 .footer__nav a::after { display: none; content: none; } /* remove o sublinhado permanente nesses links */
 .footer__nav a { transition: color var(--dur-s) var(--ease); }
 .footer__nav a:hover, .footer__nav a:focus-visible { color: var(--color-rise); }
-.footer__bottom { border-top: var(--line-light); padding-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: var(--fs-small); color: var(--color-white-70); }
+.footer__bottom { padding-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: var(--fs-small); color: var(--color-white-70); }
 
 /* ---------- Film grain ---------- */
 .film-grain {
