@@ -15,6 +15,7 @@ import { initContactForm } from './contact.js';
 import { initCaseLightbox } from './lightbox.js';
 import { initMotion } from './motion.js';
 import { initTextLoop } from './text-loop.js';
+import { initNews } from './news.js';
 
 document.documentElement.classList.remove('no-js');
 
@@ -27,6 +28,7 @@ async function boot() {
   initSpotlightCards('.solution-panel');
   initAccordionGallery('[data-accordion-gallery]', { defaultIndex: 2 });
   initProcess();
+  initNews(document.querySelector('[data-news-grid]'));
   initTextLoop(document.querySelector('[data-text-loop]'), {
     text: 'Rise Films',
     separator: '✦',

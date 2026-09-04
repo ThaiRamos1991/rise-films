@@ -4,8 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Rise Films | Produção Audiovisual, Motion, Podcast e Áudio</title>
-<meta name="description" content="Produção audiovisual, motion design, renders, podcasts, videocasts, jingles e voice production para marcas que querem transformar ideias em experiências." />
+<meta name="description" content="Produtora audiovisual em Curitiba com +20 anos de experiência. Produção audiovisual, motion design, renders, podcast/videocast e jingles para marcas que querem transformar ideias em experiências." />
+<meta name="keywords" content="produtora audiovisual, produção audiovisual Curitiba, motion design, renders 3D, estúdio de podcast, videocast, jingles, voice production, vídeo institucional, filme publicitário" />
+<meta name="author" content="Rise Films" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <link rel="canonical" href="https://risefilms.com.br/" />
+<link rel="alternate" hreflang="pt-BR" href="https://risefilms.com.br/" />
+<link rel="alternate" hreflang="x-default" href="https://risefilms.com.br/" />
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16.png" />
@@ -16,14 +21,19 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Rise Films" />
+<meta property="og:url" content="https://risefilms.com.br/" />
 <meta property="og:title" content="Rise Films | Produção Audiovisual, Motion, Podcast e Áudio" />
-<meta property="og:description" content="Produção audiovisual, motion design, renders, podcasts, videocasts, jingles e voice production para marcas que querem transformar ideias em experiências." />
-<meta property="og:image" content="/assets/images/og-cover.jpg" />
+<meta property="og:description" content="Produtora audiovisual em Curitiba com +20 anos de experiência. Produção audiovisual, motion design, renders, podcast/videocast e jingles para marcas que querem transformar ideias em experiências." />
+<meta property="og:image" content="https://risefilms.com.br/assets/images/og-cover.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Rise Films — Produção Audiovisual, Motion, Podcast e Áudio" />
 <meta property="og:locale" content="pt_BR" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Rise Films | Produção Audiovisual, Motion, Podcast e Áudio" />
-<meta name="twitter:description" content="Produção audiovisual, motion design, renders, podcasts, videocasts, jingles e voice production para marcas que querem transformar ideias em experiências." />
-<meta name="twitter:image" content="/assets/images/og-cover.jpg" />
+<meta name="twitter:description" content="Produtora audiovisual em Curitiba com +20 anos de experiência. Produção audiovisual, motion design, renders, podcast/videocast e jingles para marcas que querem transformar ideias em experiências." />
+<meta name="twitter:image" content="https://risefilms.com.br/assets/images/og-cover.jpg" />
+<meta name="twitter:image:alt" content="Rise Films — Produção Audiovisual, Motion, Podcast e Áudio" />
 
 <meta name="theme-color" content="#181818" />
 <link rel="stylesheet" href="/css/style.css" />
@@ -31,23 +41,61 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Rise Films",
-  "url": "https://risefilms.com.br/",
-  "description": "Produtora audiovisual focada em marcas, empresas e projetos de médio e grande porte.",
-  "sameAs": ["https://instagram.com/risefilmsprodutora"],
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Av. República Argentina, nº 1228, Salas 2607 e 2608, 26º Andar",
-    "addressLocality": "Curitiba",
-    "addressRegion": "PR",
-    "addressCountry": "BR"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+55-41-99815-5555",
-    "contactType": "commercial"
-  }
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": "https://risefilms.com.br/#organization",
+      "name": "Rise Films",
+      "legalName": "Rise Films Produções Audiovisuais",
+      "url": "https://risefilms.com.br/",
+      "logo": "https://risefilms.com.br/assets/logos/rise-logo.png",
+      "image": "https://risefilms.com.br/assets/images/og-cover.jpg",
+      "description": "Produtora audiovisual com mais de 20 anos de experiência, focada em marcas, empresas e projetos de médio e grande porte. Produção audiovisual, motion e renders, podcast e videocast, jingles e voice production.",
+      "priceRange": "$$",
+      "areaServed": "BR",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "TBS Group",
+        "url": "https://www.tbsgroup.marketing/"
+      },
+      "sameAs": ["https://instagram.com/risefilmsprodutora"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. República Argentina, nº 1228, Salas 2607 e 2608, 26º Andar",
+        "addressLocality": "Curitiba",
+        "addressRegion": "PR",
+        "addressCountry": "BR"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+55-41-99815-5555",
+          "contactType": "commercial",
+          "email": "vinicius@risefilms.com.br",
+          "availableLanguage": ["pt-BR"]
+        }
+      ],
+      "employee": [
+        { "@type": "Person", "name": "Vinicius Lima", "jobTitle": "CCO — Chief Creative Officer", "worksFor": { "@id": "https://risefilms.com.br/#organization" } },
+        { "@type": "Person", "name": "Thiago Berardi", "jobTitle": "Diretor Comercial", "worksFor": { "@id": "https://risefilms.com.br/#organization" } },
+        { "@type": "Person", "name": "Bruno Schultz", "jobTitle": "Diretor de Arte", "worksFor": { "@id": "https://risefilms.com.br/#organization" } }
+      ],
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Produção Audiovisual", "description": "Filmes institucionais, comerciais e conteúdo audiovisual de marca." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Motions e Renders", "description": "Motion design e renderização 3D para dar vida a conceitos visuais." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Podcast e Videocast", "description": "Estúdio próprio para gravação de podcasts e videocasts." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Jingles e Voice Production", "description": "Trilhas sonoras, jingles e locução profissional." } }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://risefilms.com.br/#website",
+      "url": "https://risefilms.com.br/",
+      "name": "Rise Films",
+      "inLanguage": "pt-BR",
+      "publisher": { "@id": "https://risefilms.com.br/#organization" }
+    }
+  ]
 }
 </script>
 </head>
@@ -70,9 +118,9 @@
     </a>
     <nav class="primary-nav" aria-label="Navegação principal">
       <ul>
-        <li><a class="link-underline" href="#home">Home</a></li>
         <li><a class="link-underline" href="#solucoes">Soluções</a></li>
         <li><a class="link-underline" href="#cases">Cases</a></li>
+        <li><a class="link-underline" href="#novidades">Novidades</a></li>
         <li><a class="link-underline" href="#equipe">Quem Somos</a></li>
         <li><a class="link-underline" href="#contato">Contato</a></li>
       </ul>
@@ -88,9 +136,9 @@
 
 <nav id="mobile-menu" class="mobile-menu" data-mobile-menu aria-label="Navegação mobile">
   <ul>
-    <li><a href="#home" data-mobile-link>Home</a></li>
     <li><a href="#solucoes" data-mobile-link>Soluções</a></li>
     <li><a href="#cases" data-mobile-link>Cases</a></li>
+    <li><a href="#novidades" data-mobile-link>Novidades</a></li>
     <li><a href="#equipe" data-mobile-link>Quem Somos</a></li>
     <li><a href="#contato" data-mobile-link>Contato</a></li>
   </ul>
@@ -344,6 +392,17 @@ despertamos emoções.</p>
     </div>
   </section>
 
+  <!-- NOVIDADES -->
+  <section class="news section-pad" id="novidades" aria-labelledby="news-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Novidades</span>
+        <h2 class="section-title" id="news-title" data-reveal>Por dentro da Rise</h2>
+      </div>
+      <div class="news__grid" data-news-grid role="list" aria-label="Novidades da Rise Films"></div>
+    </div>
+  </section>
+
   <!-- QUEM SOMOS -->
   <section class="team section-pad" id="equipe" aria-labelledby="team-title">
     <div class="container">
@@ -480,6 +539,7 @@ despertamos emoções.</p>
           <h3>Contato</h3>
           <a href="https://instagram.com/risefilmsprodutora" target="_blank" rel="noopener noreferrer">@risefilmsprodutora</a>
           <a href="https://wa.me/5541998155555" target="_blank" rel="noopener noreferrer">Vinícius Lima · +55 41 99815-5555</a>
+          <a href="mailto:vinicius@risefilms.com.br">vinicius@risefilms.com.br</a>
         </div>
         <div class="footer__col">
           <h3>Localização</h3>
@@ -490,6 +550,7 @@ despertamos emoções.</p>
         <a class="link-underline" href="#home">Home</a>
         <a class="link-underline" href="#solucoes">Soluções</a>
         <a class="link-underline" href="#cases">Cases</a>
+        <a class="link-underline" href="#novidades">Novidades</a>
         <a class="link-underline" href="#equipe">Quem Somos</a>
         <a class="link-underline" href="#contato">Contato</a>
       </nav>
