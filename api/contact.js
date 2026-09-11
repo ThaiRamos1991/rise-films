@@ -4,14 +4,40 @@
 //
 // Variáveis de ambiente necessárias (configure em
 // Vercel → Project Settings → Environment Variables):
-//   RESEND_API_KEY     -> chave de API gerada no painel da Resend
-//   CONTACT_TO_EMAIL    -> e-mail que deve receber os leads
-//                          (ex: vinicius@bddb.com.br)
-//   CONTACT_FROM_EMAIL  -> opcional. Remetente do e-mail. Enquanto
-//                          nenhum domínio próprio estiver verificado
-//                          na Resend, deixe sem definir — o código
-//                          usa "onboarding@resend.dev" como padrão.
+//   RESEND_API_KEY       -> chave de API gerada no painel da Resend
+//   CONTACT_TO_EMAIL      -> e-mail que deve receber os leads
+//                            (ex: vinicius@bddb.com.br)
+//   CONTACT_FROM_EMAIL    -> opcional. Remetente do e-mail. Enquanto
+//                            nenhum domínio próprio estiver verificado
+//                            na Resend, deixe sem definir — o código
+//                            usa "onboarding@resend.dev" como padrão.
+//   RECAPTCHA_SECRET_KEY  -> chave secreta gerada em
+//                            google.com/recaptcha/admin. Enquanto não
+//                            estiver definida, a verificação anti-spam
+//                            fica desativada (formulário continua
+//                            funcionando normalmente).
 // ============================================================
+
+async function verifyRecaptcha(token) {
+  const secret = process.env.RECAPTCHA_SECRET_KEY;
+  if (!secret) return { skipped: true, ok: true };
+  if (!token) return { skipped: false, ok: false, reason: 'missing-token' };
+
+  try {
+    const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ secret, response: token }),
+    });
+    const data = await verifyRes.json().catch(() => ({}));
+    const scoreOk = typeof data.score !== 'number' || data.score >= 0.5;
+    return { skipped: false, ok: Boolean(data.success) && scoreOk, reason: JSON.stringify(data) };
+  } catch (err) {
+    console.error('Erro ao verificar reCAPTCHA:', err);
+    // Falha na chamada ao Google não deve bloquear leads legítimos.
+    return { skipped: false, ok: true, reason: 'verify-request-failed' };
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -21,7 +47,7 @@ export default async function handler(req, res) {
 
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
-    const { name, email, company, phone, project_type, message } = body;
+    const { name, email, company, phone, project_type, message, recaptcha_token } = body;
 
     if (!name || !email || !message) {
       return res.status(400).json({ error: 'Preencha nome, e-mail e mensagem.' });
@@ -30,6 +56,12 @@ export default async function handler(req, res) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       return res.status(400).json({ error: 'E-mail inválido.' });
+    }
+
+    const recaptcha = await verifyRecaptcha(recaptcha_token);
+    if (!recaptcha.ok) {
+      console.error('reCAPTCHA reprovado:', recaptcha.reason);
+      return res.status(403).json({ error: 'Não foi possível confirmar que você não é um robô. Atualize a página e tente novamente.' });
     }
 
     const apiKey = process.env.RESEND_API_KEY;

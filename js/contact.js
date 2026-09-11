@@ -2,8 +2,32 @@
 // RISE FILMS — Formulário de contato
 // Envia os dados para /api/contact (função serverless da Vercel),
 // que despacha o e-mail via Resend. Ver api/contact.js.
+//
+// Proteção anti-spam: reCAPTCHA v3 (invisível, sem desafio para o
+// usuário). A "Site Key" abaixo é pública por natureza — pode ficar
+// no código-fonte. A chave secreta correspondente fica só no servidor
+// (variável de ambiente RECAPTCHA_SECRET_KEY na Vercel, ver api/contact.js).
 // ============================================================
 import { qs, qsa } from './utils.js';
+
+const RECAPTCHA_SITE_KEY = '6Ldg4LItAAAAAHVlaGq8rQkYQfAzZZ_KbjaoEH6m';
+
+function getRecaptchaToken() {
+  return new Promise((resolve, reject) => {
+    if (!window.grecaptcha) {
+      // reCAPTCHA não carregou (bloqueador de anúncios, sem internet, etc.).
+      // Resolve com token vazio para não travar o envio do formulário.
+      resolve('');
+      return;
+    }
+    window.grecaptcha.ready(() => {
+      window.grecaptcha
+        .execute(RECAPTCHA_SITE_KEY, { action: 'contact' })
+        .then(resolve)
+        .catch(() => resolve(''));
+    });
+  });
+}
 
 export function initContactForm() {
   const form = qs('[data-contact-form]');
@@ -32,6 +56,7 @@ export function initContactForm() {
     if (status) status.textContent = 'Enviando...';
 
     const payload = Object.fromEntries(new FormData(form).entries());
+    payload.recaptcha_token = await getRecaptchaToken();
 
     try {
       const response = await fetch('/api/contact', {
